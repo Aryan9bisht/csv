@@ -23,16 +23,16 @@ module.exports.upload = async function(req, res) {
     try {
 
         if (!req.file) {
-            // handle error if file not present
+            
             return res.status(400).send('No files were uploaded.');
         }
 
         if (req.file.mimetype !== 'text/csv') {
-            // handle error if file is not CSV
+        
             return res.status(400).send('Only CSV files are allowed.');
         }
 
-        //parser the uploaded csv file and store it in array
+        
         const results = [];
         fs.createReadStream(req.file.path)
             .pipe(csv())
@@ -58,15 +58,6 @@ module.exports.upload = async function(req, res) {
                     res.status(400).send('No file uploaded');
                 }
 
-                //send response
-                // res.status(200).json({
-                //   message: 'csv file uploaded successfully!',
-                //   data: {
-                //     filename: req.file.originalname,
-                //     header_row: results[0],
-                //     data_rows: results.slice(1),
-                //   },
-                // });
                 return res.redirect('/');
             });
     } catch (err) {
@@ -77,23 +68,18 @@ module.exports.upload = async function(req, res) {
 }
 
 
-
-// Function to view a CSV file
 module.exports.view = async function(req, res) {
     try {
         const csvFile = await CSV.findById(req.params.id);
         if (!csvFile) {
             return res.status(404).send('File not found');
         }
-
-        // Read CSV file contents
         const uploadsPath = path.join(__dirname, '../public');
         const fileData = await new Promise((resolve, reject) => {
             fs.readFile(path.join(uploadsPath, csvFile.filename), 'utf8', (err, data) => {
                 if (err) {
                     reject(err);
                 } else {
-                    // Parse the CSV data and send it to the view
                     const rows = data.trim().split('\n');
                     const header_row = rows[0].split(',');
                     const data_rows = rows.slice(1).map(row => {
