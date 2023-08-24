@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <header>
+        <h1>
+            <a href="/">CSV UPLOAD</a>
+        </h1>
+    </header>
+</head>
+
+<body>
+
+    <div class="firm">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label id="name" for="choose file to upload">Please select file</label>
+            <input type="file" name="csv" id="uploader" accept=".csv">
+            <button id="btn" type="submit">Upload</button>
+        </form>
+    </div>
+
+
+    <div class="tables">
+        <table WIDTH="70%">
+            <thead>
+                <tr>
+                    <th>Filename</th>
+
+                    <th>View</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% files.forEach(function(file) { %>
+                    <tr>
+                        <td>
+                            <%= file.filename %>
+                        </td>
+
+                        <td>
+                            <a href="/<%= file._id %>">View</a>
+                        </td>
+                        <td>
+                            <a href="/delete/<%= file._id %>">delete</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

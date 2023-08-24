@@ -1,0 +1,43 @@
+    body {
+        margin: 0;
+        background-color: bisque;
+    }
+    
+    h1 {
+        margin-top: 1px;
+        margin-left: 1vh;
+        height: 50px;
+    }
+    
+    header {
+        text-align: center;
+    }
+    
+    header {
+        background-color: aqua;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .firm {
+        margin: 5%;
+        text-align: center;
+        font-size: xx-large;
+    }
+    
+    label {
+        display: block;
+    }
+    
+    table {
+        text-align: center;
+        font-size: x-large;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .tables {
+        text-align: center;
+    }
